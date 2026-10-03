@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  check:
+    # The tests drive Claude Code's own engine, and the mod scripts macOS players,
+    # so the job runs on macOS with the Claude Code CLI installed.
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install Claude Code
+        run: npm install -g @anthropic-ai/claude-code
+      - name: Validate the plugin
+        run: claude plugin validate .
+      - name: Run the tests
+        run: claude plugin test .
+      - name: Type-check
+        # The engine lays this build's API types beside the plugin when it loads
+        # it (the test run above); without them tsc has nothing to check against.
+        run: |
+          if [ -f .claude-plugin/types/tsconfig.json ]; then
+            npx --yes typescript@5 tsc -p .
+          else
+            echo "::warning::.claude-plugin/types not laid by the engine; type-check skipped"
+          fi

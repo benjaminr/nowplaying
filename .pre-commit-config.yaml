@@ -1,0 +1,40 @@
+# Quality gates before each commit: hygiene, no secrets, and the mod's own
+# checks (validate, type-check, tests). Install once with `pre-commit install`
+# (`uv tool install pre-commit`, or `uvx pre-commit install`).
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-json
+      - id: check-yaml
+      - id: check-merge-conflict
+      - id: check-added-large-files
+        args: ['--maxkb=500']
+      - id: detect-private-key
+
+  - repo: https://github.com/Yelp/detect-secrets
+    rev: v1.5.0
+    hooks:
+      - id: detect-secrets
+        args: ['--baseline', '.secrets.baseline']
+
+  - repo: local
+    hooks:
+      - id: plugin-validate
+        name: claude plugin validate
+        entry: claude plugin validate .
+        language: system
+        pass_filenames: false
+      - id: tsc
+        name: tsc
+        entry: npx tsc -p .
+        language: system
+        pass_filenames: false
+        files: \.(ts|tsx)$
+      - id: plugin-test
+        name: claude plugin test
+        entry: claude plugin test .
+        language: system
+        pass_filenames: false

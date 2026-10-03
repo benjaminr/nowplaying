@@ -1,0 +1,6 @@
+# Laid beside the plugin by Claude Code each time it loads: this build's API
+# declarations for the editor and `tsc`. Machine-specific, regenerated.
+.claude-plugin/types/
+
+.DS_Store
+node_modules/

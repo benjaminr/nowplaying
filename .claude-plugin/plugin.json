@@ -1,0 +1,90 @@
+{
+  "name": "now-playing",
+  "author": { "name": "Ben" },
+  "version": "0.4.0",
+  "description": "Shows the track playing in Apple Music or Spotify above the prompt, with cover art, play/pause, skip, volume, shuffle and repeat controls, a share-link copy and an Up next pane.",
+  "types": "./types/index.d.ts",
+  "userConfig": {
+    "placement": {
+      "type": "string",
+      "title": "Where it shows",
+      "description": "band: cover and controls above the prompt; footer: the track in the prompt footer's bottom-right labels; both.",
+      "options": ["band", "footer", "both"],
+      "default": "band"
+    },
+    "size": {
+      "type": "string",
+      "title": "Band size",
+      "description": "large: a framed band with a big cover, the title and artist on their own rows and a wide progress bar (needs 7 rows); compact: two rows with a small cover.",
+      "options": ["large", "compact"],
+      "default": "large"
+    },
+    "source": {
+      "type": "string",
+      "title": "Player",
+      "description": "Which player to follow: auto picks whichever is playing.",
+      "options": ["auto", "music", "spotify"],
+      "default": "auto"
+    },
+    "pollSeconds": {
+      "type": "number",
+      "title": "Refresh interval",
+      "description": "How often, in seconds, the player is asked what is on while playing (1 to 30). Paused players are asked less often.",
+      "default": 2
+    },
+    "volumeStep": {
+      "type": "number",
+      "title": "Volume step",
+      "description": "How much the vol- and vol+ controls change the volume by (1 to 50).",
+      "default": 10
+    },
+    "artwork": {
+      "type": "boolean",
+      "title": "Cover art",
+      "description": "Draw the album cover beside the band in terminals that show pictures (kitty, Ghostty, WezTerm).",
+      "default": true
+    },
+    "queueArtwork": {
+      "type": "boolean",
+      "title": "Covers in Up next",
+      "description": "Draw each queued track's cover in the Up next pane, in terminals that show pictures.",
+      "default": true
+    },
+    "preloadQueue": {
+      "type": "boolean",
+      "title": "Preload Up next",
+      "description": "Read the queue and its covers whenever the track changes, so the pane opens at once.",
+      "default": true
+    },
+    "playlistName": {
+      "type": "string",
+      "title": "Playlist",
+      "description": "The Music playlist the pane's search and Claude's add_tracks tool add songs to; made when missing.",
+      "default": "Claude Code"
+    },
+    "quietWhileWorking": {
+      "type": "boolean",
+      "title": "Quiet while Claude works",
+      "description": "Collapse the band to its status row, without controls, while a turn is running.",
+      "default": true
+    },
+    "catalogue": {
+      "type": "boolean",
+      "title": "Search Apple Music too",
+      "description": "Searches also ask Apple's public catalogue, so tracks you don't own show up with an open-in-Music link.",
+      "default": true
+    },
+    "pushUpdates": {
+      "type": "boolean",
+      "title": "Instant updates",
+      "description": "Listen for Music's and Spotify's own change notifications through a small Swift helper (needs Xcode's command line tools), so the band updates the moment a track changes and polls far less. Off, or without Swift, the band polls as before.",
+      "default": true
+    },
+    "tellClaude": {
+      "type": "boolean",
+      "title": "Tell Claude what's playing",
+      "description": "Add the current track to Claude's system prompt, so it knows what you're listening to.",
+      "default": false
+    }
+  }
+}
