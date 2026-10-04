@@ -2,11 +2,11 @@
 
 A Claude Code mod that shows what Apple Music or Spotify is playing in a slim band above the prompt, with controls, cover art, an "Up next" pane, lyrics, a listening history, and tools that let Claude control the player and build playlists from your Music library by mood.
 
-<img width="1794" height="147" alt="large_top_only" src="https://github.com/user-attachments/assets/8c35244b-f542-44ca-a88a-f4142b927b8f" />
+<img width="1794" height="233" alt="compact_bottom_and_band" src="https://github.com/user-attachments/assets/f2ba37be-c97e-484f-8b4b-1ba946252977" />
 
 The frame is red for Music and green for Spotify; the cover is the real picture in terminals that draw them (kitty, Ghostty, WezTerm) and a coloured half-block thumbnail elsewhere. The compact band, two rows with a small cover, is a setting away and is what a short or narrow terminal gets:
 
-<img width="1794" height="233" alt="compact_bottom_and_band" src="https://github.com/user-attachments/assets/f2ba37be-c97e-484f-8b4b-1ba946252977" />
+<img width="1794" height="147" alt="large_top_only" src="https://github.com/user-attachments/assets/8c35244b-f542-44ca-a88a-f4142b927b8f" />
 
 Footer placement puts the track among the prompt footer's bottom-right labels instead:
 
